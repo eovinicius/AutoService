@@ -1,10 +1,9 @@
-﻿namespace SharedKernel;
+﻿using SharedKernel.Events;
+
+namespace SharedKernel;
 
 public abstract class Entity
 {
-    public Guid Id { get; protected set; }
-    public DateTime CreatedAt { get; protected set; }
-
     private readonly List<IDomainEvent> _domainEvents = [];
     public List<IDomainEvent> DomainEvents => [.. _domainEvents];
 

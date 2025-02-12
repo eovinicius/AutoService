@@ -1,4 +1,4 @@
-using SharedKernel;
+using SharedKernel.Erros;
 
 namespace Domain.Customer;
 

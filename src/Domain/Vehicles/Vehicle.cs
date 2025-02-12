@@ -1,5 +1,3 @@
-using Domain.WorkOrders;
-
 using SharedKernel;
 
 namespace Domain.Vehicles;
@@ -16,20 +14,42 @@ public class Vehicle : Entity
 
     private Vehicle() { }
 
-    public static Vehicle Create(Guid custumerId, string numberPlate, string brand, string model, string year, string color, int mileage)
+    public Vehicle(
+        Guid custumerId,
+        string numberPlate,
+        string brand,
+        string model,
+        string year,
+        string color,
+        int mileage)
     {
-        return new Vehicle
-        {
-            Id = new Guid(),
-            NumberPlate = numberPlate,
-            CustumerId = custumerId,
-            Brand = brand,
-            Model = model,
-            Year = year,
-            Color = color,
-            Mileage = mileage,
-            CreatedAt = DateTime.Now
-        };
+        CustumerId = custumerId;
+        NumberPlate = numberPlate;
+        Brand = brand;
+        Model = model;
+        Year = year;
+        Color = color;
+        Mileage = mileage;
+    }
+
+    public static Vehicle Create(
+        Guid custumerId,
+        string numberPlate,
+        string brand,
+        string model,
+        string year,
+        string color,
+        int mileage)
+    {
+        return new Vehicle(
+            custumerId,
+            numberPlate,
+            brand,
+            model,
+            year,
+            color,
+            mileage);
+
     }
 
 }

@@ -2,5 +2,13 @@ namespace Domain.WorkOrders;
 
 public enum WorkOrderStatus
 {
-    InProcress
+    Open,
+    WaitingForApproval,
+    Approved,
+    InProgress,
+    WaitingForParts,
+    Completed,
+    WaitingForPickup,
+    Canceled,
+    WarrantyClaim
 }
