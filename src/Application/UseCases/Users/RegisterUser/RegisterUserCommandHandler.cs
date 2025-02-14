@@ -1,35 +1,30 @@
-﻿using Application.Abstractions.Data;
-using Application.Abstractions.Identity;
+﻿using System.Runtime.CompilerServices;
+using Application.Abstractions.Authentication;
+using Application.Abstractions.Data;
 using Application.Abstractions.Messaging;
-
 using Domain.Abstractions.Erros;
 using Domain.Users;
-
+using Domain.Users.Events;
+using MediatR;
 
 namespace Application.UseCases.Users.RegisterUser;
 
-internal sealed class RegisterUserCommandHandler(
-    IIdentityProviderService identityProviderService,
-    IUserRepository userRepository,
-    IUnitOfWork unitOfWork)
+internal sealed class RegisterUserCommandHandler(IUserRepository _userRepository, IUnitOfWork _unitOfWork, IPasswordHasher _passwordHasher)
     : ICommandHandler<RegisterUserCommand, Guid>
 {
-    public async Task<Result<Guid>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(RegisterUserCommand Input, CancellationToken cancellationToken)
     {
-        Result<string> result = await identityProviderService.RegisterUserAsync(
-            new UserModel(request.Email, request.Password, request.FirstName, request.LastName),
-            cancellationToken);
-
-        if (result.IsFailure)
+        var userAlreadyExists = await _userRepository.GetByEmail(Input.Email, cancellationToken);
+        if (userAlreadyExists is not null)
         {
-            return Result.Failure<Guid>(result.Error);
+            return Result.Failure<Guid>(UserErrors.InvalidCredentials);
         }
 
-        var user = User.Create(request.Email, request.FirstName, request.LastName, result.Value);
+        var user = User.Create(Input.Email, _passwordHasher.Hash(Input.Password), Input.FirstName, Input.LastName);
 
-        userRepository.Insert(user);
+        user.Raise(new UserRegisteredDomainEvent(user.Id));
 
-        await unitOfWork.Commit(cancellationToken);
+        await _unitOfWork.Commit(cancellationToken);
 
         return user.Id;
     }

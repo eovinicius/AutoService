@@ -15,9 +15,9 @@ public class UserTests : BaseTest
         // Act
         var user = User.Create(
             Faker.Internet.Email(),
+            Faker.Internet.Password(),
             Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+            Faker.Name.LastName());
 
         // Assert
         user.Should().NotBeNull();
@@ -29,9 +29,9 @@ public class UserTests : BaseTest
         // Act
         var user = User.Create(
             Faker.Internet.Email(),
+            Faker.Internet.Password(),
             Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+            Faker.Name.LastName());
 
         // Assert
         user.Roles.Single().Should().Be(Role.Member);
@@ -43,9 +43,9 @@ public class UserTests : BaseTest
         // Act
         var user = User.Create(
             Faker.Internet.Email(),
+            Faker.Internet.Password(),
             Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+            Faker.Name.LastName());
 
         // Assert
         UserRegisteredDomainEvent domainEvent =
@@ -60,9 +60,9 @@ public class UserTests : BaseTest
         // Arrange
         var user = User.Create(
             Faker.Internet.Email(),
+            Faker.Internet.Password(),
             Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+            Faker.Name.LastName());
 
         // Act
         user.Update(user.LastName, user.FirstName);
@@ -82,9 +82,9 @@ public class UserTests : BaseTest
         // Arrange
         var user = User.Create(
             Faker.Internet.Email(),
+            Faker.Internet.Password(),
             Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+            Faker.Name.LastName());
 
         user.ClearDomainEvents();
 

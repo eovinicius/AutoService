@@ -1,19 +1,13 @@
-﻿// namespace Evently.Modules.Users.Application.Users.UpdateUser;
+﻿using Application.Abstractions.Messaging;
+using Domain.Users.Events;
 
-// internal sealed class UserProfileUpdatedDomainEventHandler(IEventBus eventBus)
-//     : DomainEventHandler<UserProfileUpdatedDomainEvent>
-// {
-//     public override async Task Handle(
-//         UserProfileUpdatedDomainEvent domainEvent,
-//         CancellationToken cancellationToken = default)
-//     {
-//         await eventBus.PublishAsync(
-//             new UserProfileUpdatedIntegrationEvent(
-//                 domainEvent.Id,
-//                 domainEvent.OccurredOnUtc,
-//                 domainEvent.UserId,
-//                 domainEvent.FirstName,
-//                 domainEvent.LastName),
-//             cancellationToken);
-//     }
-// }
+namespace Application.UseCases.Users.UpdateUser;
+
+internal sealed class UserProfileUpdatedDomainEventHandler()
+    : IDomainEventHandler<UserProfileUpdatedDomainEvent>
+{
+    public Task Handle(UserProfileUpdatedDomainEvent domainEvent, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+}

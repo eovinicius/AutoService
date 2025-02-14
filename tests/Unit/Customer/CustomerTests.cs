@@ -1,97 +1,96 @@
-﻿using Domain.Users;
-using Domain.Users.Events;
+﻿// using Domain.Customers;
 
-using FluentAssertions;
+// using FluentAssertions;
 
-using Unit.Abstractions;
+// using Unit.Abstractions;
 
-namespace Unit.Customer;
+// namespace Unit.Customer;
 
-public class CustomerTests : BaseTest
-{
-    [Fact]
-    public void Create_ShouldReturnUser()
-    {
-        // Act
-        var user = User.Create(
-            Faker.Internet.Email(),
-            Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+// public class CustomerTests : BaseTest
+// {
+//     [Fact]
+//     public void Create_ShouldReturnCustomer()
+//     {
+//         // Act
+//         var customer = Customer.Create(
+//             Faker.Internet.Email(),
+//             Faker.Name.FirstName(),
+//             Faker.Name.LastName(),
+//             Guid.NewGuid().ToString());
 
-        // Assert
-        user.Should().NotBeNull();
-    }
+//         // Assert
+//         customer.Should().NotBeNull();
+//     }
 
-    [Fact]
-    public void Create_ShouldReturnUser_WithMemberRole()
-    {
-        // Act
-        var user = User.Create(
-            Faker.Internet.Email(),
-            Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+//     [Fact]
+//     public void Create_ShouldReturnCustomer_WithMemberRole()
+//     {
+//         // Act
+//         var customer = Customer.Create(
+//             Faker.Internet.Email(),
+//             Faker.Name.FirstName(),
+//             Faker.Name.LastName(),
+//             Guid.NewGuid().ToString());
 
-        // Assert
-        user.Roles.Single().Should().Be(Role.Member);
-    }
+//         // Assert
+//         customer.Roles.Single().Should().Be(Role.Member);
+//     }
 
-    [Fact]
-    public void Create_ShouldRaiseDomainEvent_WhenUserCreated()
-    {
-        // Act
-        var user = User.Create(
-            Faker.Internet.Email(),
-            Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+//     [Fact]
+//     public void Create_ShouldRaiseDomainEvent_WhenCustomerCreated()
+//     {
+//         // Act
+//         var customer = Customer.Create(
+//             Faker.Internet.Email(),
+//             Faker.Name.FirstName(),
+//             Faker.Name.LastName(),
+//             Guid.NewGuid().ToString());
 
-        // Assert
-        UserRegisteredDomainEvent domainEvent =
-            AssertDomainEventWasPublished<UserRegisteredDomainEvent>(user);
+//         // Assert
+//         CustomerRegisteredDomainEvent domainEvent =
+//             AssertDomainEventWasPublished<CustomerRegisteredDomainEvent>(customer);
 
-        domainEvent.UserId.Should().Be(user.Id);
-    }
+//         domainEvent.CustomerId.Should().Be(customer.Id);
+//     }
 
-    [Fact]
-    public void Update_ShouldRaiseDomainEvent_WhenUserUpdated()
-    {
-        // Arrange
-        var user = User.Create(
-            Faker.Internet.Email(),
-            Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+//     [Fact]
+//     public void Update_ShouldRaiseDomainEvent_WhenCustomerUpdated()
+//     {
+//         // Arrange
+//         var customer = Customer.Create(
+//             Faker.Internet.Email(),
+//             Faker.Name.FirstName(),
+//             Faker.Name.LastName(),
+//             Guid.NewGuid().ToString());
 
-        // Act
-        user.Update(user.LastName, user.FirstName);
+//         // Act
+//         customer.Update(customer.LastName, customer.FirstName);
 
-        // Assert
-        UserProfileUpdatedDomainEvent domainEvent =
-            AssertDomainEventWasPublished<UserProfileUpdatedDomainEvent>(user);
+//         // Assert
+//         CustomerProfileUpdatedDomainEvent domainEvent =
+//             AssertDomainEventWasPublished<CustomerProfileUpdatedDomainEvent>(customer);
 
-        domainEvent.UserId.Should().Be(user.Id);
-        domainEvent.FirstName.Should().Be(user.FirstName);
-        domainEvent.LastName.Should().Be(user.LastName);
-    }
+//         domainEvent.CustomerId.Should().Be(customer.Id);
+//         domainEvent.FirstName.Should().Be(customer.FirstName);
+//         domainEvent.LastName.Should().Be(customer.LastName);
+//     }
 
-    [Fact]
-    public void Update_ShouldNotRaiseDomainEvent_WhenUserNotUpdated()
-    {
-        // Arrange
-        var user = User.Create(
-            Faker.Internet.Email(),
-            Faker.Name.FirstName(),
-            Faker.Name.LastName(),
-            Guid.NewGuid().ToString());
+//     [Fact]
+//     public void Update_ShouldNotRaiseDomainEvent_WhenCustomerNotUpdated()
+//     {
+//         // Arrange
+//         var customer = Customer.Create(
+//             Faker.Internet.Email(),
+//             Faker.Name.FirstName(),
+//             Faker.Name.LastName(),
+//             Guid.NewGuid().ToString());
 
-        user.ClearDomainEvents();
+//         customer.ClearDomainEvents();
 
-        // Act
-        user.Update(user.FirstName, user.LastName);
+//         // Act
+//         customer.Update(customer.FirstName, customer.LastName);
 
-        // Assert
-        user.DomainEvents.Should().BeEmpty();
-    }
-}
+//         // Assert
+//         customer.DomainEvents.Should().BeEmpty();
+//     }
+// }

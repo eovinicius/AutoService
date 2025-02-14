@@ -8,7 +8,11 @@ public sealed partial class DocumentNumber
 
     public DocumentNumber(string value)
     {
-        if (!Validate(value)) throw new Exception("");
+        if (!Validate(value))
+        {
+            throw new Exception("");
+        }
+
         Value = value;
 
     }
