@@ -1,6 +1,6 @@
-using SharedKernel.Erros;
+using Domain.Abstractions.Erros;
 
-namespace Domain.Vehicle;
+namespace Domain.Vehicles;
 
 public class VehicleErrors
 {

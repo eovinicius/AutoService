@@ -1,12 +1,8 @@
 ﻿namespace Domain.Users;
 
-public sealed class Permission
+public sealed class Permission(string code)
 {
-    public string Code { get; }
-    public Permission(string code)
-    {
-        Code = code;
-    }
+    public string Code { get; } = code;
 
     public static readonly Permission GetUser = new("users:read");
     public static readonly Permission ModifyUser = new("users:update");

@@ -1,33 +1,12 @@
-﻿// using Application.UseCases.Users.GetUser;
+﻿using Application.Abstractions.Messaging;
 
-// using MediatR;
+using Domain.Users.Events;
+namespace Application.UseCases.Users.RegisterUser;
 
-// namespace Application.UseCases.Users.RegisterUser;
-
-// internal sealed class UserRegisteredDomainEventHandler(ISender sender, IEventBus bus)
-//     : DomainEventHandler<UserRegisteredDomainEvent>
-// {
-//     public override async Task Handle(
-//         UserRegisteredDomainEvent domainEvent,
-//         CancellationToken cancellationToken = default)
-//     {
-//         Result<UserResponse> result = await sender.Send(
-//             new GetUserQuery(domainEvent.UserId),
-//             cancellationToken);
-
-//         if (result.IsFailure)
-//         {
-//             throw new EventlyException(nameof(GetUserQuery), result.Error);
-//         }
-
-//         await bus.PublishAsync(
-//             new UserRegisteredIntegrationEvent(
-//                 domainEvent.Id,
-//                 domainEvent.OccurredOnUtc,
-//                 result.Value.Id,
-//                 result.Value.Email,
-//                 result.Value.FirstName,
-//                 result.Value.LastName),
-//             cancellationToken);
-//     }
-// }
+internal sealed class UserRegisteredDomainEventHandler : IDomainEventHandler<UserRegisteredDomainEvent>
+{
+    public Task Handle(UserRegisteredDomainEvent domainEvent, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+}

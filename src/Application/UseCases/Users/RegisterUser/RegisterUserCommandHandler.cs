@@ -1,12 +1,10 @@
 ﻿using Application.Abstractions.Data;
 using Application.Abstractions.Identity;
+using Application.Abstractions.Messaging;
 
+using Domain.Abstractions.Erros;
 using Domain.Users;
 
-using Evently.Common.Application.Messaging;
-using Evently.Modules.Users.Domain.Users;
-
-using SharedKernel.Erros;
 
 namespace Application.UseCases.Users.RegisterUser;
 
@@ -31,7 +29,7 @@ internal sealed class RegisterUserCommandHandler(
 
         userRepository.Insert(user);
 
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+        await unitOfWork.Commit(cancellationToken);
 
         return user.Id;
     }

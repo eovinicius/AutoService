@@ -1,9 +1,9 @@
-﻿namespace SharedKernel.Events;
+﻿namespace Domain.Abstractions.Events;
 
 public abstract class DomainEvent : IDomainEvent
 {
-    public DateTime OccurredOnUtc { get; init; }
     public Guid Id { get; init; }
+    public DateTime OccurredOnUtc { get; init; }
 
     protected DomainEvent()
     {

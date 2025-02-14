@@ -1,7 +1,8 @@
 ﻿using Bogus;
 
-using SharedKernel;
-using SharedKernel.Events;
+using Domain.Abstractions;
+using Domain.Abstractions.Events;
+
 
 namespace Unit.Abstractions;
 
@@ -14,11 +15,6 @@ public abstract class BaseTest
     {
         T? domainEvent = entity.DomainEvents.OfType<T>().SingleOrDefault();
 
-        if (domainEvent is null)
-        {
-            throw new Exception($"{typeof(T).Name} was not published");
-        }
-
-        return domainEvent;
+        return domainEvent is null ? throw new Exception($"{typeof(T).Name} was not published") : domainEvent;
     }
 }

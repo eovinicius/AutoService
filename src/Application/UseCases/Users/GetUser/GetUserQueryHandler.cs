@@ -1,8 +1,10 @@
 ﻿// using System.Data.Common;
 
-// using Application.Messaging;
+// using Application.Abstractions.Messaging;
 
-// using SharedKernel.Erros;
+// using Domain.Abstractions.Erros;
+// using Domain.Users;
+
 
 // namespace Application.UseCases.Users.GetUser;
 

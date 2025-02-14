@@ -1,4 +1,4 @@
-using SharedKernel;
+using Domain.Abstractions;
 
 namespace Domain.Customers;
 

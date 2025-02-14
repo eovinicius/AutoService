@@ -1,6 +1,6 @@
-﻿using SharedKernel.Events;
+﻿using Domain.Abstractions.Events;
 
-namespace SharedKernel;
+namespace Domain.Abstractions;
 
 public abstract class Entity
 {

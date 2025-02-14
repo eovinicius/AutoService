@@ -1,4 +1,4 @@
-﻿using SharedKernel.Erros;
+﻿using Domain.Abstractions.Erros;
 
 namespace Domain.Users;
 

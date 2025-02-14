@@ -1,4 +1,4 @@
-﻿namespace SharedKernel.Erros;
+﻿namespace Domain.Abstractions.Erros;
 
 public class Result
 {
@@ -29,19 +29,14 @@ public class Result
         new(default, false, error);
 }
 
-public class Result<TValue> : Result
+
+public class Result<TValue>(TValue? value, bool isSuccess, Error error) : Result(isSuccess, error)
 {
-    private readonly TValue? _value;
+    private readonly TValue? _value = value;
 
     public TValue Value => IsSuccess
         ? _value!
         : throw new InvalidOperationException("The value of a failure result can't be accessed.");
-
-    public Result(TValue? value, bool isSuccess, Error error)
-        : base(isSuccess, error)
-    {
-        _value = value;
-    }
 
     public static implicit operator Result<TValue>(TValue? value) =>
         value is not null ? Success(value) : Failure<TValue>(Error.NullValue);

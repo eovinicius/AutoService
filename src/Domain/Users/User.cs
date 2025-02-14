@@ -1,6 +1,5 @@
-﻿using Domain.Users.Events;
-
-using SharedKernel;
+﻿using Domain.Abstractions;
+using Domain.Users.Events;
 
 namespace Domain.Users;
 
@@ -12,7 +11,7 @@ public sealed class User : Entity
     public string LastName { get; private set; }
     public string IdentityId { get; private set; }
     private readonly List<Role> _roles = [];
-    public IReadOnlyCollection<Role> Roles => _roles.ToList();
+    public IReadOnlyCollection<Role> Roles => [.. _roles];
 
     private User() { }
 

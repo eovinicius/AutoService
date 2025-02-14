@@ -1,14 +1,11 @@
 ﻿using Application.Abstractions.Data;
-using Application.UseCases.Users.UpdateUser;
+using Application.Abstractions.Messaging;
 
+using Domain.Abstractions.Erros;
 using Domain.Users;
 
-using Evently.Common.Application.Messaging;
-using Evently.Modules.Users.Domain.Users;
 
-using SharedKernel.Erros;
-
-namespace Evently.Modules.Users.Application.Users.UpdateUser;
+namespace Application.UseCases.Users.UpdateUser;
 
 internal sealed class UpdateUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
     : ICommandHandler<UpdateUserCommand>
@@ -24,7 +21,7 @@ internal sealed class UpdateUserCommandHandler(IUserRepository userRepository, I
 
         user.Update(request.FirstName, request.LastName);
 
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+        await unitOfWork.Commit(cancellationToken);
 
         return Result.Success();
     }

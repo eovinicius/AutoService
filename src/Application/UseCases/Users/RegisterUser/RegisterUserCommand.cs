@@ -1,4 +1,4 @@
-﻿using Application.Messaging;
+﻿using Application.Abstractions.Messaging;
 
 namespace Application.UseCases.Users.RegisterUser;
 

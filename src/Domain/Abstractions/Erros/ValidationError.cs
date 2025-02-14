@@ -1,4 +1,4 @@
-﻿namespace SharedKernel.Erros;
+﻿namespace Domain.Abstractions.Erros;
 
 public sealed record ValidationError : Error
 {

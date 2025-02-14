@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace Domain.Vehicles.ValueObject;
 
-public class NumberPlate
+public partial class NumberPlate
 {
     public string Value { get; private set; }
     public NumberPlate(string value)
@@ -13,8 +13,11 @@ public class NumberPlate
         }
         Value = value;
     }
-    public bool Validate(string value)
+    public static bool Validate(string value)
     {
-        return Regex.IsMatch(value, @"^[A-Z]{3}-\d{4}$|^[A-Z]{3}\d[A-Z]\d{2}$");
+        return MyRegex().IsMatch(value);
     }
+
+    [GeneratedRegex(@"^[A-Z]{3}-\d{4}$|^[A-Z]{3}\d[A-Z]\d{2}$")]
+    private static partial Regex MyRegex();
 }

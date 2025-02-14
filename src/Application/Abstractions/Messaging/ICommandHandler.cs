@@ -1,10 +1,9 @@
-﻿using Application.Messaging;
+﻿using Domain.Abstractions.Erros;
 
 using MediatR;
 
-using SharedKernel.Erros;
 
-namespace Evently.Common.Application.Messaging;
+namespace Application.Abstractions.Messaging;
 
 public interface ICommandHandler<in TCommand> : IRequestHandler<TCommand, Result>
     where TCommand : ICommand;

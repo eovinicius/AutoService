@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace Domain.Customers.ValueObject;
 
-public sealed class DocumentNumber
+public sealed partial class DocumentNumber
 {
     public string Value { get; set; }
 
@@ -13,8 +13,11 @@ public sealed class DocumentNumber
 
     }
 
-    private bool Validate(string value)
+    private static bool Validate(string value)
     {
-        return Regex.IsMatch(value, @"^\d{3}.\d{3}.\d{3}-\d{2}$");
+        return MyRegex().IsMatch(value);
     }
+
+    [GeneratedRegex(@"^\d{3}.\d{3}.\d{3}-\d{2}$")]
+    private static partial Regex MyRegex();
 }

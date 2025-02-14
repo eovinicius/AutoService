@@ -1,6 +1,4 @@
-﻿using Domain.Users;
-
-namespace Evently.Modules.Users.Domain.Users;
+﻿namespace Domain.Users;
 
 public interface IUserRepository
 {

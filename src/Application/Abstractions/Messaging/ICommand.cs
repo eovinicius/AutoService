@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Domain.Abstractions.Erros;
 
-using SharedKernel.Erros;
+using MediatR;
 
-namespace Application.Messaging;
+
+namespace Application.Abstractions.Messaging;
 
 public interface ICommand : IRequest<Result>, IBaseCommand;
 
